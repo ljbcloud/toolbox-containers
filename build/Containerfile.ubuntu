@@ -1,0 +1,73 @@
+ARG PACKAGES_REGISTRY
+ARG UBUNTU_VERSION
+
+# hadolint ignore=DL3006,DL3007
+FROM ${PACKAGES_REGISTRY}/packages:latest as packages
+
+FROM docker.io/library/ubuntu:${UBUNTU_VERSION} as node
+
+# hadolint ignore=DL3008
+RUN apt-get update && apt-get install -y --no-install-recommends nodejs npm && apt-get clean
+
+# hadolint ignore=DL3008
+RUN apt-get update && apt-get install -y --no-install-recommends make g++ && apt-get clean
+
+WORKDIR /vendor
+
+COPY package.json .
+
+COPY yarn.lock .
+
+RUN npm install --global yarn@latest && yarn install
+
+FROM docker.io/library/ubuntu:${UBUNTU_VERSION} as python
+
+# hadolint ignore=DL3008
+RUN apt-get update && apt-get install -y --no-install-recommends python3 python3-pip python3-poetry rust-all && apt-get clean
+
+WORKDIR /vendor
+
+COPY requirements.txt .
+
+# hadolint ignore=DL3008
+RUN python3 -m pip install --prefix /vendor/python --no-cache-dir --progress-bar off -r /vendor/requirements.txt --ignore-installed --no-build-isolation
+
+FROM docker.io/library/ubuntu:${UBUNTU_VERSION}
+
+LABEL com.github.containers.toolbox="true"
+
+COPY ubuntu-packages.txt /vendor/ubuntu-packages.txt
+
+# hadolint ignore=DL3008,SC2046
+RUN apt-get update && apt-get install -y --no-install-recommends $(awk '!/^($|#)/ { print $1 }' /vendor/ubuntu-packages.txt) && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# hadolint ignore=DL3008
+RUN wget -qO vscodium.gpg https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg && \
+    gpg --dearmor < vscodium.gpg > /usr/share/keyrings/vscodium-archive-keyring.gpg && rm -rf vscodium.gpg && \
+    echo 'deb [ signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg ] https://download.vscodium.com/debs vscodium main' > /etc/apt/sources.list.d/vscodium.list && \
+    apt-get update && apt-get install -y --no-install-recommends codium && apt-get clean
+
+# hadolint ignore=SC2114
+RUN sed -i -e 's/ ALL$/ NOPASSWD:ALL/' /etc/sudoers && \
+    rm -rf /home
+
+COPY rootfs/usr/share/fonts/ /usr/share/fonts/
+
+RUN fc-cache -f
+
+COPY rootfs/ /
+
+COPY --from=node /vendor/node_modules/ /vendor/node_modules/
+
+COPY --from=python /vendor/python/ /vendor/python/
+
+COPY --from=packages /packages/dist/ /vendor/bin/
+
+# the location of asdf core scripts. can be set to any location. must be an absolute path.
+# https://asdf-vm.com/manage/configuration.html#asdf-dir
+ENV ASDF_DIR="/vendor/asdf-vm"
+
+# add asdf, python, node, and packages bin to PATH
+ENV PATH="/vendor/asdf-vm/bin:/vendor/bin:/vendor/python/bin:/vendor/node_modules/.bin:${PATH}"
+
+ENV WORKSPACE="${HOME}/Development"

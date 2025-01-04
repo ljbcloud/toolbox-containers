@@ -1,0 +1,13 @@
+{
+  "license": "MIT",
+  "dependencies": {
+    "@vue/cli": "5.0.8",
+    "cdktf-cli": "0.20.11",
+    "ganache": "7.9.2",
+    "gatsby-cli": "5.14.0",
+    "hardhat": "2.23.0",
+    "npm": "11.3.0",
+    "pnpm": "10.8.0",
+    "yarn": "2.4.3"
+  }
+}

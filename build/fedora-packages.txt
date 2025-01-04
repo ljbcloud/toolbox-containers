@@ -1,0 +1,94 @@
+# fonts
+fontconfig
+fontconfig-devel
+freetype
+freetype-devel
+google-noto-sans-armenian-vf-fonts
+google-noto-sans-canadian-aboriginal-vf-fonts
+google-noto-sans-georgian-vf-fonts
+google-noto-sans-hebrew-vf-fonts
+google-noto-sans-lao-vf-fonts
+google-noto-sans-mono-vf-fonts
+google-noto-sans-thaana-vf-fonts
+google-noto-sans-vf-fonts
+google-noto-serif-vf-fonts
+google-noto-serif-lao-vf-fonts
+google-noto-sans-ethiopic-vf-fonts
+google-noto-serif-sinhala-vf-fonts
+google-noto-color-emoji-fonts
+
+# c / c++
+gcc-c++
+
+# go
+go
+
+# misc
+alien
+android-tools
+bats
+bind-utils
+bleachbit
+cargo
+clamav
+ffmpeg
+ffmpeg-devel
+git
+git-credential-libsecret
+glibc-static
+gstreamer1-plugin-openh264
+haskell-platform
+hadolint
+helm
+ImageMagick
+jq
+just
+kubernetes-client
+kubernetes-kubeadm
+libpq
+libpq-devel
+libstdc++-devel
+lz4
+make
+moby-engine
+nmap
+p7zip
+p7zip-plugins
+openssh-askpass
+openssl
+openssl-devel
+perl
+readline-devel
+rpmdevtools
+rpmlint
+rpmrebuild
+sqlite-devel
+stow
+tk-devel
+util-linux-user
+vim
+vulkan-loader
+xz
+
+# node
+nodejs
+npm
+
+# python
+conda
+poetry
+pre-commit
+python-unversioned-command
+python3
+python3-devel
+python3-dotenv
+python3-invoke
+python3-pip
+
+# rust
+rust
+
+# zsh
+zsh
+zsh-autosuggestions
+zsh-syntax-highlighting

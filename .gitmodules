@@ -1,0 +1,15 @@
+[submodule "build/rootfs/vendor/asdf-vm"]
+	path = build/rootfs/vendor/asdf-vm
+	url = https://github.com/asdf-vm/asdf
+
+[submodule "build/rootfs/usr/share/zsh-autosuggestions"]
+	path = build/rootfs/usr/share/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
+
+[submodule "build/rootfs/usr/share/zsh-history-substring-search"]
+	path = build/rootfs/usr/share/zsh-history-substring-search
+	url = https://github.com/zsh-users/zsh-history-substring-search
+
+[submodule "build/rootfs/usr/share/zsh-syntax-highlighting"]
+	path = build/rootfs/usr/share/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting

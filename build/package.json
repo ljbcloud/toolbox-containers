@@ -5,7 +5,7 @@
     "cdktf-cli": "0.20.12",
     "ganache": "7.9.2",
     "gatsby-cli": "5.14.0",
-    "hardhat": "2.23.0",
+    "hardhat": "2.24.0",
     "npm": "11.4.0",
     "pnpm": "10.8.0",
     "yarn": "2.4.3"

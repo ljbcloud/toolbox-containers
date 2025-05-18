@@ -8741,10 +8741,10 @@ pkg-up@3.1.0:
   dependencies:
     find-up "^3.0.0"
 
-pnpm@10.8.0:
-  version "10.8.0"
-  resolved "https://registry.yarnpkg.com/pnpm/-/pnpm-10.8.0.tgz#ae60ea225bbd6b1f51cd17e91b40431c8b12a052"
-  integrity sha512-DoJxTRtbQ8dGEBk8sgc0iXwdAN6J0OGEIK68WXf6E9eAqcsFc0Yk6B69gcyHbNRkeUhQZBxIuVRDJrViLKKZcQ==
+pnpm@10.11.0:
+  version "10.11.0"
+  resolved "https://registry.yarnpkg.com/pnpm/-/pnpm-10.11.0.tgz#4048eeefd564ff1ab248fac3e2854d38245fe2f1"
+  integrity sha512-ZUBYP0HMX2KOs9l3Ps7oAvT575kjzEW2mJD7R5kdSwkpZGlOw6T3OKQgyRijMwYsi5JdMS9C5PDCY+tgNVH5dw==
 
 portfinder@^1.0.26:
   version "1.0.32"

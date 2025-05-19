@@ -36,7 +36,7 @@ jobs:
             type=sha,format=short,prefix=
             type=ref,event=tag
             type=ref,event=branch
-            type=raw,enable=${{ startsWith(github.ref, 'refs/tags/') }},value=${{ matrix.FEDORA_VERSION }}
+            type=raw,enable=${{ startsWith(github.ref, 'refs/heads/main') }},value=${{ matrix.FEDORA_VERSION }}
 
       - name: Login to GitHub Container Registry
         uses: redhat-actions/podman-login@v1

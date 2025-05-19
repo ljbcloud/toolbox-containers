@@ -14,10 +14,11 @@ permissions:
 
 jobs:
   build-test-push:
+    env:
+      PACKAGES_REGISTRY: ghcr.io/ljbcloud
     strategy:
       matrix:
         FEDORA_VERSION: [42]
-        PACKAGES_REGISTRY: [ghcr.io/ljbcloud]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -30,7 +31,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            ghcr.io/${{ github.repository }}
+            ghcr.io/ljbcloud/fedora-toolbox
           tags: |
             type=sha,format=short,prefix=
             type=ref,event=tag
@@ -54,7 +55,7 @@ jobs:
           context: ${{ env.GITHUB_WORKSPACE }}/build
           build-args: |
             FEDORA_VERSION=${{ matrix.FEDORA_VERSION }}
-            PACKAGES_REGISTRY=${{ matrix.PACKAGES_REGISTRY }}
+            PACKAGES_REGISTRY=${{ env.PACKAGES_REGISTRY }}
           containerfiles: |
             ${{ env.GITHUB_WORKSPACE }}/build/Containerfile
           platforms: |

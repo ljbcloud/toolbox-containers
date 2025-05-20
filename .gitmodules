@@ -1,7 +1,3 @@
-[submodule "build/rootfs/vendor/asdf-vm"]
-	path = build/rootfs/vendor/asdf-vm
-	url = https://github.com/asdf-vm/asdf
-
 [submodule "build/rootfs/usr/share/zsh-autosuggestions"]
 	path = build/rootfs/usr/share/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions

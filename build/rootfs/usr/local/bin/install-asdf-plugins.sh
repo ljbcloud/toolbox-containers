@@ -2,7 +2,7 @@
 
 set -e
 
-PLUGINS_FILE="${PLUGINS_FILE:-"/vendor/asdf-plugins.txt"}"
+PLUGINS_FILE="${PLUGINS_FILE:-"/etc/asdf-plugins.txt"}"
 
 if [ -f "$PLUGINS_FILE" ]; then
 	mapfile -t ASDF_PLUGINS < <(grep -h -v '^#' "${PLUGINS_FILE}")

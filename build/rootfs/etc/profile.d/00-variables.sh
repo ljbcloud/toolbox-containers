@@ -26,12 +26,9 @@ export SHELL
 
 export ASDF_DATA_DIR="${ASDF_DATA_DIR:-"${HOME}/.asdf"}"
 
-if [ -n "$BASH_VERSION" ]; then
-	# shellcheck disable=SC1091
-	. "${ASDF_DIR}/asdf.sh"
-	# shellcheck disable=SC1091
-	. "${ASDF_DIR}/internal/completions/asdf.bash"
-fi
+PATH="${ASDF_DATA_DIR}/shims:${PATH}"
+
+export PATH
 
 # aws
 

@@ -90,11 +90,7 @@ COPY --from=python /vendor/python/ /vendor/python/
 
 COPY --from=packages /packages/dist/ /vendor/bin/
 
-# the location of asdf core scripts. can be set to any location. must be an absolute path.
-# https://asdf-vm.com/manage/configuration.html#asdf-dir
-ENV ASDF_DIR="/vendor/asdf-vm"
-
-# add asdf, python, node, and packages bin to PATH
-ENV PATH="/vendor/asdf-vm/bin:/vendor/bin:/vendor/python/bin:/vendor/node_modules/.bin:${PATH}"
+# add python, node, and packages bin to PATH
+ENV PATH="/vendor/bin:/vendor/python/bin:/vendor/node_modules/.bin:${PATH}"
 
 ENV WORKSPACE="${HOME}/Development"

@@ -2,6 +2,10 @@
 
 set -e
 
+if [ "$DEBUG" = "true" ]; then
+	set -x
+fi
+
 #
 # global variables
 #
@@ -88,8 +92,8 @@ _delete_file "${HOME}/.bash_history"
 # zsh
 _delete_glob "${HOME}/.zsh_history*"
 _delete_glob "${HOME}/.zcompdump*"
-_delete_glob ".cache/*.zsh.zwc"
-_delete_glob ".cache/*.zsh"
+_delete_glob "${HOME}/.cache/*.zsh.zwc"
+_delete_glob "${HOME}/.cache/*.zsh"
 
 #
 # image thumbnails
@@ -135,16 +139,9 @@ if type flatpak &>/dev/null; then
 	# uninstall unused flatpak runtimes
 	flatpak uninstall --unused --assumeyes >/dev/null
 
-	# clean up permissions
-	mapfile -t document_permissions <(flatpak permissions | awk '/^documents/ {print $2}')
-	mapfile -t background_permissions <(flatpak permissions | awk '/^background/ {print $3}')
-
-	for perm in "${document_permissions[@]}"; do
-		flatpak permission-remove documents "$perm"
-	done
-
-	for perm in "${background_permissions[@]}"; do
-		flatpak permission-remove background "$perm"
+	# reset permissions
+	for fp in $(flatpak list --user --columns=application | sed 1d); do
+		flatpak permission-reset -v "$fp"
 	done
 else
 	echo "flatpak is not installed. skipping..."
@@ -156,10 +153,6 @@ fi
 
 if type npm &>/dev/null; then
 	npm cache clean --force
-fi
-
-if type yarn &>/dev/null; then
-	yarn cache clean --force
 fi
 
 if type brew &>/dev/null; then

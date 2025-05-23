@@ -33,6 +33,7 @@ cargo
 clamav
 ffmpeg
 ffmpeg-devel
+gh
 git
 git-credential-libsecret
 glibc-static

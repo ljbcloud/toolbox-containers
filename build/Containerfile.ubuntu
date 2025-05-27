@@ -61,7 +61,7 @@ COPY --from=node /vendor/node_modules/ /vendor/node_modules/
 
 COPY --from=python /vendor/python/ /vendor/python/
 
-COPY --from=packages /packages/dist/ /vendor/bin/
+COPY --from=packages /dist/ /vendor/bin/
 
 # add python, node, and packages bin to PATH
 ENV PATH="/vendor/bin:/vendor/python/bin:/vendor/node_modules/.bin:${PATH}"

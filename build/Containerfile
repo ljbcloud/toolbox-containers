@@ -70,10 +70,6 @@ RUN curl -sSL -o /tmp/phantomjs.tar.bz2 "https://bitbucket.org/ariya/phantomjs/d
     tar xvjf /tmp/phantomjs.tar.bz2 -C /usr/local/share && \
     rm -rvf /tmp/phantomjs.tar.bz2
 
-RUN curl -s https://fluxcd.io/install.sh -O && \
-    bash install.sh && \
-    rm -rvf install.sh
-
 RUN curl -sSL -o /tmp/ngrok.tar.gz "https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz" && \
     tar xzvf /tmp/ngrok.tar.gz -C /usr/local/bin && \
     rm -rf /tmp/ngrok.tar.gz

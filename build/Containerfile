@@ -64,12 +64,6 @@ RUN dnf install -y libxshmfence && \
     dnf install -y codium && \
     dnf clean all
 
-ARG PHANTOMJS_VERSION="2.1.1"
-
-RUN curl -sSL -o /tmp/phantomjs.tar.bz2 "https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-${PHANTOMJS_VERSION}-linux-x86_64.tar.bz2" && \
-    tar xvjf /tmp/phantomjs.tar.bz2 -C /usr/local/share && \
-    rm -rvf /tmp/phantomjs.tar.bz2
-
 RUN curl -sSL -o /tmp/ngrok.tar.gz "https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz" && \
     tar xzvf /tmp/ngrok.tar.gz -C /usr/local/bin && \
     rm -rf /tmp/ngrok.tar.gz

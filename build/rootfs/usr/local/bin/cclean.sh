@@ -60,15 +60,20 @@ function _is_in_path() {
 
 function _delete_dir() {
 	if [ -d "$1" ]; then
-		rm -rvf "$1"
+		if _is_in_path bleachbit; then
+			bleachbit --shred "$1"
+		else
+			find "$1" -type f -print -exec shred -u {} \;
+			rm -rvf "$1"
+		fi
 	else
-		echo "$1 is not a directory or does not exist. skiping..."
+		echo "${1} is not a directory or does not exist. skipping..."
 	fi
 }
 
 function _delete_file() {
 	if [ -f "$1" ]; then
-		rm -rvf "$1"
+		shred -uvf "$1"
 	else
 		echo "${1} is not a file or does not exist. skipping..."
 	fi
@@ -100,18 +105,14 @@ _delete_glob "${HOME}/.cache/*.zsh"
 #
 
 if [ -d "${HOME}/.cache" ]; then
-	find "${HOME}/.cache" \( -name "*.png" -o -name "*.jpg" \) -print -exec rm {} \;
-fi
-
-if [ -d "${HOME}/.var/app" ]; then
-	find "${HOME}/.var/app" \( -name "*.png" -o -name "*.jpg" \) -print -exec rm {} \;
+	find "${HOME}/.cache" \( -name "*.png" -o -name "*.jpg" \) -exec shred -vu {} \;
 fi
 
 #
 # file system database
 #
 
-if type tracker3 &>/dev/null; then
+if _is_in_path tracker3; then
 	tracker3 reset --filesystem --rss
 fi
 
@@ -119,14 +120,14 @@ fi
 # containers
 #
 
-if type podman &>/dev/null; then
+if _is_in_path podman; then
 	podman container prune -f
 	podman image prune -af
 else
 	echo "podman is not installed. skipping..."
 fi
 
-if type docker &>/dev/null; then
+if _is_in_path docker; then
 	if [ -S "/var/run/docker.sock" ]; then
 		docker container prune -f
 		docker image prune -af
@@ -135,13 +136,13 @@ else
 	echo "docker is not installed. skipping..."
 fi
 
-if type flatpak &>/dev/null; then
+if _is_in_path flatpak; then
 	# uninstall unused flatpak runtimes
-	flatpak uninstall --unused --assumeyes >/dev/null
+	flatpak uninstall --unused --assumeyes --verbose >/dev/null
 
 	# reset permissions
 	for fp in $(flatpak list --user --columns=application | sed 1d); do
-		flatpak permission-reset -v "$fp"
+		flatpak permission-reset --verbose "$fp"
 	done
 else
 	echo "flatpak is not installed. skipping..."
@@ -151,11 +152,11 @@ fi
 # package managers
 #
 
-if type npm &>/dev/null; then
+if _is_in_path npm; then
 	npm cache clean --force
 fi
 
-if type brew &>/dev/null; then
+if _is_in_path brew; then
 	brew cleanup
 fi
 
@@ -167,7 +168,7 @@ for d in "${CLEANUP_DIRS[@]}"; do
 	_delete_dir "${HOME}/${d}"
 done
 
-if type bleachbit &>/dev/null; then
+if _is_in_path bleachbit; then
 	bleachbit --clean --all-but-warning
 fi
 

@@ -8634,10 +8634,10 @@ pkg-up@3.1.0:
   dependencies:
     find-up "^3.0.0"
 
-pnpm@10.12.1:
-  version "10.12.1"
-  resolved "https://registry.yarnpkg.com/pnpm/-/pnpm-10.12.1.tgz#4bd977ce548dc9fcd1ca0c62838c55646cea6847"
-  integrity sha512-8N2oWA8O6UgcXHmh2Se5Fk8sR46QmSrSaLuyRlpzaYQ5HWMz0sMnkTV4soBK8zR0ylVLopwEqLEwYKcXZ1rjrA==
+pnpm@10.12.2:
+  version "10.12.2"
+  resolved "https://registry.yarnpkg.com/pnpm/-/pnpm-10.12.2.tgz#12699edadad4a9899f8ae9dd8e8651d8976bf198"
+  integrity sha512-oyVAGFuWTuMLtOl55AWtxq9ZImtDjuTMGfnodzZnpm0wL1v+5go508rGnjXkuW5winHdACt+k1nEESoXIqwyPw==
 
 portfinder@^1.0.26:
   version "1.0.32"

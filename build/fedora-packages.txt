@@ -49,6 +49,8 @@ kubernetes-kubeadm
 libpq
 libpq-devel
 libstdc++-devel
+# needed for generating pdf from markdown
+libXScrnSaver
 lz4
 make
 moby-engine

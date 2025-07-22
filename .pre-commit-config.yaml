@@ -16,3 +16,9 @@ repos:
       - id: hadolint
         types: [] # if types is ['dockerfile'], then pre-commit will never pass build/Containerfile to hadolint
         files: build/Containerfile.*
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.12.4
+    hooks:
+      - id: ruff-check
+        args: ["--fix"]

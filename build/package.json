@@ -3,8 +3,6 @@
   "dependencies": {
     "@vue/cli": "5.0.8",
     "cdktf-cli": "0.21.0",
-    "ganache": "7.9.2",
-    "gatsby-cli": "5.14.0",
     "hardhat": "2.25.0",
     "npm": "11.4.2",
     "pnpm": "10.13.1",

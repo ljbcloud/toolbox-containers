@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
 import os
-import logging
+from pathlib import Path
 
-HOME = os.getenv("HOME", os.path.expanduser("~"))
+HOME = os.getenv("HOME", Path("~").expanduser())

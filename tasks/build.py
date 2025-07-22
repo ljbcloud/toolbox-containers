@@ -1,9 +1,10 @@
+# ruff: noqa: PT028
 import os
+from pathlib import Path
 import subprocess
-from typing import Dict
-from invoke import Context, task
 
 from dotenv import load_dotenv
+from invoke import Context, task
 
 from config import BUILD_DIR, DIST_DIR, TEST_DIR
 
@@ -14,9 +15,7 @@ UBUNTU_VERSION = os.getenv("UBUNTU_VERSION", "24.04")
 DESTINATION_REGISTRY = os.getenv("DESTINATION_REGISTRY", "localhost")
 PACKAGES_REGISTRY = os.getenv("PACKAGES_REGISTRY", "localhost")
 
-COMMIT_SHA = subprocess.check_output(
-    ["git", "rev-parse", "--short", "HEAD"], text=True
-).strip()
+COMMIT_SHA = subprocess.check_output(["git", "rev-parse", "--short", "HEAD"], text=True).strip()
 
 
 @task
@@ -27,20 +26,20 @@ def build(
     containerfile: str,
     tag: str = COMMIT_SHA,
     no_cache: bool = False,
-    build_args: Dict[str, str] = {},
+    build_args: dict[str, str] | None = None,
 ) -> None:
     args_string = f"--build-arg PACKAGES_REGISTRY={PACKAGES_REGISTRY} "
 
-    args_string += " ".join(
-        f"--build-arg {key}={value}" for key, value in build_args.items()
-    )
+    if build_args:
+        args_string += " ".join(f"--build-arg {key}={value}" for key, value in build_args.items())
 
     no_cache_str = "--no-cache" if no_cache else ""
 
     with c.cd(BUILD_DIR):
-        c.run(
-            f"podman build --pull --file {containerfile} {args_string} {no_cache_str} --tag {registry}/{image}:{tag}"
-        )
+        c.run(f"""
+            podman build --pull --file {containerfile} {args_string} {no_cache_str} \
+                --tag {registry}/{image}:{tag}
+            """)
 
 
 @task
@@ -69,9 +68,10 @@ def build_ubuntu(c: Context, no_cache: bool = False) -> None:
 
 @task
 def test(c: Context, image: str, verbose: bool = False) -> None:
-    c.run(
-        f"podman run --rm -v {TEST_DIR}:/test:z {image} bats {"--verbose-run" if verbose else ""} /test"
-    )
+    c.run(f"""
+    podman run --rm -v {TEST_DIR}:/test:z {image} \
+        bats {"--verbose-run" if verbose else ""} /test
+    """)
 
 
 @task
@@ -85,20 +85,14 @@ def test_ubuntu(c: Context, verbose: bool = False) -> None:
 
 
 @task
-def save(
-    c: Context, image: str, tag: str, localhost: bool = False, force: bool = True
-) -> None:
-    if localhost:
-        registry = "localhost"
-    else:
-        registry = DESTINATION_REGISTRY
-
-    out_file = os.path.join(DIST_DIR, registry, f"{image}-{tag}.tar")
+def save(c: Context, image: str, tag: str, localhost: bool = False, force: bool = True) -> None:
+    registry = "localhost" if localhost else DESTINATION_REGISTRY
+    out_file = Path(f"{DIST_DIR}/registry/{image}-{tag}.tar")
 
     if force:
         c.run(f"rm -rfv {out_file}")
 
-    c.run(f"mkdir -p {os.path.dirname(out_file)}")
+    c.run(f"mkdir -p {Path(out_file).parent}")
     c.run(f"podman image save {registry}/{image}:{tag} -o {out_file}")
 
 
@@ -114,11 +108,7 @@ def save_ubuntu(c: Context, localhost: bool = False) -> None:
 
 @task
 def tag(c: Context, image: str, tag: str, localhost: bool = False) -> None:
-    if localhost:
-        registry = "localhost"
-    else:
-        registry = DESTINATION_REGISTRY
-
+    registry = "localhost" if localhost else DESTINATION_REGISTRY
     c.run(f"podman tag localhost/{image}:{COMMIT_SHA} {registry}/{image}:{tag}")
 
 
@@ -133,9 +123,7 @@ def tag_ubuntu(c: Context, localhost: bool = False) -> None:
 
 
 @task
-def push(
-    c: Context, image: str, tag: str, registry: str = DESTINATION_REGISTRY
-) -> None:
+def push(c: Context, image: str, tag: str, registry: str = DESTINATION_REGISTRY) -> None:
     c.run(f"podman push {registry}/{image}:{tag}")
 
 
@@ -150,9 +138,7 @@ def push_ubuntu(c: Context) -> None:
 
 
 @task
-def create_toolbox(
-    c: Context, image: str, registry: str, tag: str = COMMIT_SHA
-) -> None:
+def create_toolbox(c: Context, image: str, registry: str, tag: str = COMMIT_SHA) -> None:
     toolbox_container_name = f"{image}-{tag}"
     c.run(f"podman stop {toolbox_container_name} || true")
     c.run(f"toolbox rm {toolbox_container_name} || true")

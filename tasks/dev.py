@@ -1,4 +1,4 @@
-import os
+from pathlib import Path
 
 from invoke import Context, task
 
@@ -13,7 +13,7 @@ def clean(c: Context) -> None:
 @task
 def download_fonts(c: Context) -> None:
     with c.cd(BUILD_DIR):
-        if not os.path.exists(os.path.join(CACHE_DIR, "Meslo.zip")):
+        if not Path(f"{CACHE_DIR}/Meslo.zip").exists():
             c.run(
                 f"wget -P {CACHE_DIR} https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/Meslo.zip"
             )
@@ -27,7 +27,7 @@ def get_pypi_version(c: Context, package: str) -> None:
 @task
 def node_modules(c: Context, latest: bool = False) -> None:
     with c.cd(BUILD_DIR):
-        c.run(f"yarn install {'--latest' if latest else ""}")
+        c.run(f"yarn install {'--latest' if latest else ''}")
 
 
 @task

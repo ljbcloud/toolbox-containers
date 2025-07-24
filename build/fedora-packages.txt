@@ -68,6 +68,7 @@ rpmrebuild
 sqlite-devel
 stow
 tk-devel
+unrar
 util-linux-user
 vim
 vulkan-loader

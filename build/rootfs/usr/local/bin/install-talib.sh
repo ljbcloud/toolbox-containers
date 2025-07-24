@@ -11,7 +11,7 @@ curl -sSL -o "${temp}/ta-lib.tar.gz" "https://github.com/ta-lib/ta-lib/releases/
 tar xzvf "${temp}/ta-lib.tar.gz" -C "$temp"
 
 (
-	cd "${temp}/ta-lib-${TA_LIB_VERSION}" || return
+	cd "${temp}/ta-lib-${TALIB_VERSION}" || return
 	./configure --prefix=/usr
 	sudo make install
 )

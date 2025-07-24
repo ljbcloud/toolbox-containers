@@ -1,7 +1,5 @@
 .env
 cache/
-node_modules/
-venv/
 dist/
-.yarnrc.yml
-.yarn/
+.venv/
+.ruff_cache/

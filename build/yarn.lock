@@ -2375,7 +2375,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nomicfoundation/edr@npm:^0.11.1":
+"@nomicfoundation/edr@npm:^0.11.3":
   version: 0.11.3
   resolution: "@nomicfoundation/edr@npm:0.11.3"
   dependencies:
@@ -3066,15 +3066,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/bn.js@npm:^5.1.0":
-  version: 5.2.0
-  resolution: "@types/bn.js@npm:5.2.0"
-  dependencies:
-    "@types/node": "npm:*"
-  checksum: 10c0/7a36114b8e61faba5c28b433c3e5aabded261745dabb8f3fe41b2d84e8c4c2b8282e52a88a842bd31a565ff5dbf685145ccd91171f1a8d657fb249025c17aa85
-  languageName: node
-  linkType: hard
-
 "@types/body-parser@npm:*":
   version: 1.19.6
   resolution: "@types/body-parser@npm:1.19.6"
@@ -3193,13 +3184,6 @@ __metadata:
   version: 4.0.2
   resolution: "@types/long@npm:4.0.2"
   checksum: 10c0/42ec66ade1f72ff9d143c5a519a65efc7c1c77be7b1ac5455c530ae9acd87baba065542f8847522af2e3ace2cc999f3ad464ef86e6b7352eece34daf88f8c924
-  languageName: node
-  linkType: hard
-
-"@types/lru-cache@npm:^5.1.0":
-  version: 5.1.1
-  resolution: "@types/lru-cache@npm:5.1.1"
-  checksum: 10c0/1f17ec9b202c01a89337cc5528198a690be6b61a6688242125fbfb7fa17770e453e00e4685021abf5ae605860ca0722209faac5c254b780d0104730bb0b9e354
   languageName: node
   linkType: hard
 
@@ -3416,7 +3400,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vue/cli@npm:5.0.8":
+"@vue/cli@npm:^5.0.8":
   version: 5.0.8
   resolution: "@vue/cli@npm:5.0.8"
   dependencies:
@@ -4449,7 +4433,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cdktf-cli@npm:0.21.0":
+"cdktf-cli@npm:^0.21.0":
   version: 0.21.0
   resolution: "cdktf-cli@npm:0.21.0"
   dependencies:
@@ -4971,6 +4955,19 @@ __metadata:
   version: 1.0.3
   resolution: "core-util-is@npm:1.0.3"
   checksum: 10c0/90a0e40abbddfd7618f8ccd63a74d88deea94e77d0e8dbbea059fa7ebebb8fbb4e2909667fe26f3a467073de1a542ebe6ae4c73a73745ac5833786759cd906c9
+  languageName: node
+  linkType: hard
+
+"corepack@npm:^0.34.0":
+  version: 0.34.0
+  resolution: "corepack@npm:0.34.0"
+  bin:
+    corepack: ./dist/corepack.js
+    pnpm: ./dist/pnpm.js
+    pnpx: ./dist/pnpx.js
+    yarn: ./dist/yarn.js
+    yarnpkg: ./dist/yarnpkg.js
+  checksum: 10c0/a432dcd619aa532652177f727662c1f3117dba24613213c1c49292d1ea695832de476c43f05c262227f64f0a8cf3a02bbd6a05fa7222012b36a2fd83abc2c26a
   languageName: node
   linkType: hard
 
@@ -6705,17 +6702,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hardhat@npm:2.25.0":
-  version: 2.25.0
-  resolution: "hardhat@npm:2.25.0"
+"hardhat@npm:^2.25.0":
+  version: 2.26.1
+  resolution: "hardhat@npm:2.26.1"
   dependencies:
     "@ethereumjs/util": "npm:^9.1.0"
     "@ethersproject/abi": "npm:^5.1.2"
-    "@nomicfoundation/edr": "npm:^0.11.1"
+    "@nomicfoundation/edr": "npm:^0.11.3"
     "@nomicfoundation/solidity-analyzer": "npm:^0.1.0"
     "@sentry/node": "npm:^5.18.1"
-    "@types/bn.js": "npm:^5.1.0"
-    "@types/lru-cache": "npm:^5.1.0"
     adm-zip: "npm:^0.4.16"
     aggregate-error: "npm:^3.0.0"
     ansi-escapes: "npm:^4.3.0"
@@ -6760,7 +6755,7 @@ __metadata:
       optional: true
   bin:
     hardhat: internal/cli/bootstrap.js
-  checksum: 10c0/b2e880cc549b9d76ae079fe30e99defb57e6b18a2a123a5747f644b42c738d83be2e1a13f273df0a5940ca3fad31a74ef81a2492a73bf3c4c0d889ece9289a3e
+  checksum: 10c0/5e81cee718fbcd1fa9e88889e5ab815dbff6efa1e3cb92eae2a2fcafae0022996cf951180234abfb892e0fbb1c7e806492ea6ca39ae70300077716aade8b9ddb
   languageName: node
   linkType: hard
 
@@ -9381,7 +9376,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"npm@npm:11.4.2":
+"npm@npm:^11.4.2":
   version: 11.4.2
   resolution: "npm@npm:11.4.2"
   dependencies:
@@ -10017,7 +10012,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pnpm@npm:10.13.1":
+"pnpm@npm:^10.13.1":
   version: 10.13.1
   resolution: "pnpm@npm:10.13.1"
   dependencies:
@@ -10702,12 +10697,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
-    "@vue/cli": "npm:5.0.8"
-    cdktf-cli: "npm:0.21.0"
-    hardhat: "npm:2.25.0"
-    npm: "npm:11.4.2"
-    pnpm: "npm:10.13.1"
-    yarn: "npm:2.4.3"
+    "@vue/cli": "npm:^5.0.8"
+    cdktf-cli: "npm:^0.21.0"
+    corepack: "npm:^0.34.0"
+    hardhat: "npm:^2.25.0"
+    npm: "npm:^11.4.2"
+    pnpm: "npm:^10.13.1"
+    yarn: "npm:^2.4.3"
   languageName: unknown
   linkType: soft
 
@@ -12702,7 +12698,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yarn@npm:2.4.3":
+"yarn@npm:^2.4.3":
   version: 2.4.3
   resolution: "yarn@npm:2.4.3"
   bin:

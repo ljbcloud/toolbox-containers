@@ -1,11 +1,12 @@
 {
   "license": "MIT",
   "dependencies": {
-    "@vue/cli": "5.0.8",
-    "cdktf-cli": "0.21.0",
-    "hardhat": "2.25.0",
-    "npm": "11.4.2",
-    "pnpm": "10.13.1",
-    "yarn": "2.4.3"
+    "@vue/cli": "^5.0.8",
+    "cdktf-cli": "^0.21.0",
+    "corepack": "^0.34.0",
+    "hardhat": "^2.25.0",
+    "npm": "^11.4.2",
+    "pnpm": "^10.13.1",
+    "yarn": "^2.4.3"
   }
 }

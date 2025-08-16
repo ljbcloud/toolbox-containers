@@ -8,7 +8,7 @@ dependencies = ["invoke>=2.2.0", "python-dotenv>=1.1.1"]
 
 [tool.ruff]
 line-length = 99
-src = ["tasks"]
+src = ["tasks", "build"]
 # Ruff will automatically exclude all files listed in .gitignore as well as common temporary Python
 # tool directories.
 # To exclude additional folders, use extend-exclude.

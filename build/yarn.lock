@@ -9666,15 +9666,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pnpm@npm:^10.14.0":
-  version: 10.14.0
-  resolution: "pnpm@npm:10.14.0"
+"pnpm@npm:^10.15.0":
+  version: 10.15.0
+  resolution: "pnpm@npm:10.15.0"
   dependencies:
     node-gyp: latest
   bin:
     pnpm: bin/pnpm.cjs
     pnpx: bin/pnpx.cjs
-  checksum: 8/39783acc24c713e77c643ae316ba1d3390ab44497ee7fc0171b9bf29bd0be9c8e8dd4046dfb1ba1dcc73db947035e7c5d3a77d4a2b33146d66a8f437d366617d
+  checksum: 8/7f08271fff4ca81c24852dad95e271e3c7f0531fb11c242bcca8705e76b091a93c6f50f83369a59f61406227e840bb0d4575f28d395d949bfb3e7c692df85986
   languageName: node
   linkType: hard
 
@@ -10336,7 +10336,7 @@ __metadata:
     corepack: ^0.34.0
     hardhat: ^3.0.0
     npm: ^11.5.2
-    pnpm: ^10.14.0
+    pnpm: ^10.15.0
     yarn: ^2.4.3
   languageName: unknown
   linkType: soft

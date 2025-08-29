@@ -6561,9 +6561,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hardhat@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "hardhat@npm:3.0.0"
+"hardhat@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "hardhat@npm:3.0.1"
   dependencies:
     "@nomicfoundation/edr": 0.12.0-next.4
     "@nomicfoundation/hardhat-errors": ^3.0.0
@@ -6585,7 +6585,7 @@ __metadata:
     zod: ^3.23.8
   bin:
     hardhat: dist/src/cli.js
-  checksum: 8/221b85b0ad31c55ef90724e527eb012ccb303981ac088bf43c90e3a59e87460d120b5336b25890c8da5fc945570399ed9b021d26e590993b1dbd3cf07ed0ba92
+  checksum: 8/a5948baf71676befa8f8d7b53f4a23aa0a4b630a3d3a649005aada916490dbd4f4b817bd2a6cc5b6bffdef3ca8e8584061ea27dbf16f598f3037198762216da3
   languageName: node
   linkType: hard
 
@@ -10334,7 +10334,7 @@ __metadata:
     "@vue/cli": ^5.0.9
     cdktf-cli: ^0.21.0
     corepack: ^0.34.0
-    hardhat: ^3.0.0
+    hardhat: ^3.0.1
     npm: ^11.5.2
     pnpm: ^10.14.0
     yarn: ^2.4.3

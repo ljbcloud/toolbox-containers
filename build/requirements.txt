@@ -2,4 +2,4 @@ beets[embedart,fetchart]==2.3.1
 gallery-dl==1.30.5
 mkdocs==1.6.1
 scdl==3.0.0
-yt-dlp==2025.8.22
+yt-dlp==2025.8.27
